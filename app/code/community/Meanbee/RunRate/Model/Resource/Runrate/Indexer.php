@@ -9,6 +9,9 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
 
     public function reindexAll()
     {
+        // Has to be outside of the transaction as it's considered a DDL statement.
+        $this->_getWriteAdapter()->truncateTable($this->getMainTable());
+
         $this->beginTransaction();
 
         try {
