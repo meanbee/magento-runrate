@@ -55,7 +55,7 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
                 'i.qty AS current_stock',
                 'at_lead_time.value AS lead_time',
                 new Zend_Db_Expr("ROUND($average_run_sql_fragment, 2) AS `average_run`"),
-                new Zend_Db_Expr("$weeks_remaining_sql_fragment AS `weeks_remaining_at_average_run`")
+                new Zend_Db_Expr("FLOOR($weeks_remaining_sql_fragment) AS `weeks_remaining_at_average_run`")
             ));
 
             $this->insertFromSelect($product_select, $this->getMainTable(), array(
