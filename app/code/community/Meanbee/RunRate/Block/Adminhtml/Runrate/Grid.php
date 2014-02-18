@@ -53,7 +53,7 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
             'header'    => $this->getAverageRunColumnHeading(),
             'align'     =>'left',
             'type'      => 'number',
-            'index'     => 'average_run',
+            'index'     => 'average_run'
         ));
 
         $this->addColumn('lead_time', array(
@@ -76,7 +76,7 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
     public function getAverageRunColumnHeading()
     {
         $weeks_for_average = Mage::helper('meanbee_runrate/config')->getWeeksForAverage();
-        return sprintf("Average (Over %s week%s)", $weeks_for_average, (($weeks_for_average == 1) ? '' : 's'));
+        return sprintf("Weekly Sales (%d week avg.)", $weeks_for_average, (($weeks_for_average == 1) ? '' : 's'));
     }
 
     public function decorateStatus($value, $row, $column, $isExport) {
