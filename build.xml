@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="runrate" default="build">
+    <target name="build" depends="lint" />
+    <target name="lint" depends="lint-php,lint-xml" />
+
+    <property name="build.dir" value="build" />
+
+    <target name="prepare">
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="lint-php" depends="prepare" description="Perform syntax check of all php files">
+        <phplint cachefile="build/phplint.cache">
+            <fileset dir=".">
+                <include name="**/*.php" />
+                <include name="**/*.phtml" />
+            </fileset>
+        </phplint>
+    </target>
+
+    <target name="lint-xml" description="Perform a syntax check of all xml files">
+        <xmllint>
+            <fileset dir=".">
+                <include name="*.xml" />
+            </fileset>
+        </xmllint>
+    </target>
+</project>
