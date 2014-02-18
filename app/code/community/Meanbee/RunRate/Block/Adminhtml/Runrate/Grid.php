@@ -7,6 +7,8 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
 
         $this->setId('meanbee_runrate_grid');
         $this->setSaveParametersInSession(false);
+
+        $this->_emptyText = 'No records found. You may need to reindex.';
     }
 
     protected function _prepareCollection() {
