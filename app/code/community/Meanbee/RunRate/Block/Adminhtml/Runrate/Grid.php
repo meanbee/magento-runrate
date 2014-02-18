@@ -9,6 +9,12 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
         $this->setSaveParametersInSession(false);
 
         $this->_emptyText = 'No records found. You may need to reindex.';
+
+        $this->addExportType('*/*/exportCsv', 'CSV');
+        $this->addExportType('*/*/exportXml', 'XML');
+
+        // Removed Excel as the implementation throws a warning
+        // $this->addExportType('*/*/exportExcel', 'Excel');
     }
 
     protected function _prepareCollection() {
@@ -80,6 +86,11 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
     }
 
     public function decorateStatus($value, $row, $column, $isExport) {
+
+        if ($isExport) {
+            return $value;
+        }
+
         switch ($row->getStatus()) {
             case Meanbee_RunRate_Helper_Status::STATUS_SAFE:
                 $severity = 'notice';
