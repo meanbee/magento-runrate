@@ -1,7 +1,6 @@
 <layout>
     <adminhtml_meanbee_runrate_view>
         <reference name="content">
-            <block type="meanbee_runrate/adminhtml_lastBuilt" name="meanbee.runrate.last_built" />
             <block type="meanbee_runrate/adminhtml_runrate" name="meanbee.runrate.grid_container" />
         </reference>
     </adminhtml_meanbee_runrate_view>

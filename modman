@@ -1,5 +1,4 @@
 app/etc/modules/* app/etc/modules/
 app/code/community/Meanbee/RunRate app/code/community/Meanbee/RunRate
 app/design/adminhtml/default/default/layout/meanbee/* app/design/adminhtml/default/default/layout/meanbee/
-app/design/adminhtml/default/default/template/meanbee/runrate app/design/adminhtml/default/default/template/meanbee/runrate
 package.xml var/connect/Meanbee_RunRate.xml
