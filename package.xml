@@ -41,7 +41,7 @@
             <max/>
          </max>
          <files>
-            <files>  </files>
+            <files>   </files>
          </files>
       </package>
       <extension>
@@ -62,20 +62,17 @@
          <target>magecommunity</target>
          <target>mageetc</target>
          <target>magedesign</target>
-         <target>magedesign</target>
       </target>
       <path>
          <path/>
          <path>Meanbee/RunRate</path>
          <path>modules/Meanbee_RunRate.xml</path>
-         <path>adminhtml/default/default/template/meanbee/runrate</path>
          <path>adminhtml/default/default/layout/meanbee/runrate.xml</path>
       </path>
       <type>
          <type>file</type>
          <type>dir</type>
          <type>file</type>
-         <type>dir</type>
          <type>file</type>
       </type>
       <include>
@@ -83,10 +80,8 @@
          <include/>
          <include/>
          <include/>
-         <include/>
       </include>
       <ignore>
-         <ignore/>
          <ignore/>
          <ignore/>
          <ignore/>
