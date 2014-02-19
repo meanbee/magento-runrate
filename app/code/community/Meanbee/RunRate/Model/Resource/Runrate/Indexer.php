@@ -89,7 +89,7 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
         $product_select->columns(array(
             'e.entity_id AS product_id',
             new Zend_Db_Expr(sprintf(
-                "IF(%s < at_lead_time.value, 'warning', IF(%s < at_lead_time.value * 1.2,'order_soon','safe')) AS status",
+                "IF(%s < (at_lead_time.value / 7), 'warning', IF(%s < (at_lead_time.value / 7) * 1.2,'order_soon','safe')) AS status",
                 $weeks_remaining_sql_fragment,
                 $weeks_remaining_sql_fragment
             )),
