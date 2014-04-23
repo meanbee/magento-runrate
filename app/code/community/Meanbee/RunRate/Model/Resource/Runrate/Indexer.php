@@ -57,7 +57,7 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
         $weeks_for_average = Mage::helper('meanbee_runrate/config')->getWeeksForAverage();
         $leadtime_attribute_code = Mage::helper('meanbee_runrate/config')->getLeadTimeAttributeCode();
 
-        $start_date = time() - ($weeks_for_average * 7 * 24 * 60);
+        $start_date = time() - ($weeks_for_average * 7 * 24 * 60 * 60);
         $end_date = time();
 
         $product_select = Mage::getModel('catalog/product')->getCollection()
