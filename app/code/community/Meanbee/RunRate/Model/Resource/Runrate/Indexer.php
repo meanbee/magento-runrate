@@ -66,9 +66,10 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
             ->joinAttribute('name', 'catalog_product/name', 'entity_id', null, 'left')
             ->joinAttribute('lead_time', 'catalog_product/' . $leadtime_attribute_code, 'entity_id', null, 'left')
             ->getSelect();
+        Mage::log($product_select->assemble(), null, 'ashsmith.log', true);
 
         $product_select
-            ->join(array('i' => $this->getTable('cataloginventory/stock_status')), 'i.product_id = e.entity_id', '')
+            ->join(array('i' => $this->getTable('cataloginventory/stock_item')), 'i.product_id = e.entity_id', '')
             ->joinLeft(array('oi' => $this->getTable('sales/order_item')), 'oi.product_id = e.entity_id', '')
             ->joinLeft(array('o' => $this->getTable('sales/order')), 'o.entity_id = oi.order_id', '')
             ->where(new Zend_Db_Expr(sprintf(
