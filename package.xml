@@ -1,5 +1,5 @@
 <_>
-   <form_key>lcURbiweFULGtFjL</form_key>
+   <form_key>2B1om83FDCArZ9Bh</form_key>
    <name>Meanbee_RunRate</name>
    <channel>community</channel>
    <version_ids>
@@ -9,11 +9,9 @@
    <description>Establish when you are going to run out of stock and when you are going to need to order more.</description>
    <license>Commercial License</license>
    <license_uri/>
-   <version>1.0.2</version>
+   <version>1.0.3</version>
    <stability>stable</stability>
-   <notes>Bug fix: start date for run rate products was incorrectly calculated.
-
-Bug fix: Using incorrect table for calculating up-to-date stock levels</notes>
+   <notes>Added ACL support.</notes>
    <authors>
       <name>
          <name>Meanbee</name>
@@ -42,7 +40,7 @@ Bug fix: Using incorrect table for calculating up-to-date stock levels</notes>
             <max/>
          </max>
          <files>
-            <files>     </files>
+            <files>       </files>
          </files>
       </package>
       <extension>
@@ -89,8 +87,4 @@ Bug fix: Using incorrect table for calculating up-to-date stock levels</notes>
          <ignore/>
       </ignore>
    </contents>
-   <page>1</page>
-   <limit>200</limit>
-   <folder/>
-   <package/>
 </_>

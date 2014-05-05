@@ -10,6 +10,15 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
+                    <comment>
+                        <![CDATA[
+                            <div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+                                <p><strong>Documentation and Support</strong></p>
+                                For instructions on how to configure and use this extension, please visit our documentation at: <a href="http://help.meanbee.com/kb/run-rate">http://help.meanbee.com/kb/run-rate</a>.
+                                If your issue is not covered, you find a problem with the extension, or just want to give us some feedback, email us as at: <a href="mailto:hello@meanbee.com">hello@meanbee.com</a>.
+                            </div>
+                        ]]>
+                    </comment>
                     <fields>
                         <average_run_weeks>
                             <label>Average Run Week Length</label>
