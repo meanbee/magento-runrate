@@ -20,7 +20,7 @@ class Meanbee_RunRate_Adminhtml_Meanbee_RunrateController extends Mage_Adminhtml
     public function exportCsvAction()
     {
         $filename = 'runrate.csv';
-        $data = $this->getLayout()->createBlock('meanbee_runrate/adminhtml_runrate_grid')->getCsv();
+        $data = $this->getGridBlock()->getCsv();
 
         return $this->setDownloadHeaders($filename, $data);
     }
@@ -28,9 +28,17 @@ class Meanbee_RunRate_Adminhtml_Meanbee_RunrateController extends Mage_Adminhtml
     public function exportXmlAction()
     {
         $filename = 'runrate.xml';
-        $data = $this->getLayout()->createBlock('meanbee_runrate/adminhtml_runrate_grid')->getXml();
+        $data = $this->getGridBlock()->getXml();
 
         return $this->setDownloadHeaders($filename, $data);
+    }
+
+    /**
+     * @return Meanbee_RunRate_Block_Adminhtml_Runrate_Grid
+     */
+    protected function getGridBlock()
+    {
+        return $this->getLayout()->createBlock('meanbee_runrate/adminhtml_runrate_grid');
     }
 
     protected function setDownloadHeaders($filename, $data)
