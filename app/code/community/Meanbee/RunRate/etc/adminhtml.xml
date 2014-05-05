@@ -6,7 +6,7 @@
                 <products>
                     <children>
                         <meanbee_runrate>
-                            <title>Run rate</title>
+                            <title>Run Rate</title>
                             <sort_order>100</sort_order>
                             <action>adminhtml/meanbee_runrate/view</action>
 
