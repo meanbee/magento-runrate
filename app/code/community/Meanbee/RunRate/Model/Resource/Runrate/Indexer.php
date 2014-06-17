@@ -1,7 +1,7 @@
 <?php
 class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Resource_Abstract
 {
-    const MYSQL_DATETIME_FORMAT = 'Y-m-d H:i:s';
+    const MYSQL_DATE_FORMAT = 'Y-m-d';
 
     protected function _construct() {
         $this->_init('meanbee_runrate/runrate', 'product_id');
@@ -60,23 +60,22 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
         $start_date = time() - ($weeks_for_average * 7 * 24 * 60 * 60);
         $end_date = time();
 
+        /** @var Varien_Db_Select $product_select */
         $product_select = Mage::getModel('catalog/product')->getCollection()
             ->addAttributeToSelect('name')
             ->addAttributeToSelect('sku')
             ->joinAttribute('name', 'catalog_product/name', 'entity_id', null, 'left')
             ->joinAttribute('lead_time', 'catalog_product/' . $leadtime_attribute_code, 'entity_id', null, 'left')
             ->getSelect();
-        Mage::log($product_select->assemble(), null, 'ashsmith.log', true);
 
         $product_select
             ->join(array('i' => $this->getTable('cataloginventory/stock_item')), 'i.product_id = e.entity_id', '')
-            ->joinLeft(array('oi' => $this->getTable('sales/order_item')), 'oi.product_id = e.entity_id', '')
-            ->joinLeft(array('o' => $this->getTable('sales/order')), 'o.entity_id = oi.order_id', '')
-            ->where(new Zend_Db_Expr(sprintf(
-                "(o.created_at BETWEEN '%s' AND '%s') OR o.created_at IS NULL",
-                date(self::MYSQL_DATETIME_FORMAT, $start_date),
-                date(self::MYSQL_DATETIME_FORMAT, $end_date)
-            )))
+            ->joinLeft(array('o' => $this->getTable('sales/order')), sprintf(
+                "((o.created_at BETWEEN '%s 00:00:00' AND '%s 23:59:59') OR o.created_at IS NULL) AND o.state NOT IN ('canceled', 'holded', 'closed')",
+                date(self::MYSQL_DATE_FORMAT, $start_date),
+                date(self::MYSQL_DATE_FORMAT, $end_date)
+            ), '')
+            ->joinLeft(array('oi' => $this->getTable('sales/order_item')), 'oi.product_id = e.entity_id AND oi.order_id = o.entity_id', '')
             ->group('e.entity_id');
 
         if (count($product_ids)) {
@@ -98,10 +97,9 @@ class Meanbee_RunRate_Model_Resource_Runrate_Indexer extends Mage_Index_Model_Re
             'at_name.value AS name',
             'i.qty AS current_stock',
             'at_lead_time.value AS lead_time',
-            new Zend_Db_Expr("ROUND($average_run_sql_fragment, 2) AS `average_run`"),
+            new Zend_Db_Expr("COALESCE(ROUND($average_run_sql_fragment, 2),0) AS `average_run`"),
             new Zend_Db_Expr("FLOOR($weeks_remaining_sql_fragment) AS `weeks_remaining_at_average_run`")
         ));
-
         return $product_select;
     }
 }
