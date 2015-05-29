@@ -9,7 +9,7 @@
    <description>Establish when you are going to run out of stock and when you are going to need to order more.</description>
    <license>Commercial License</license>
    <license_uri/>
-   <version>1.0.4</version>
+   <version>1.0.5</version>
    <stability>stable</stability>
    <notes>Fixed accuracy bugs</notes>
    <authors>

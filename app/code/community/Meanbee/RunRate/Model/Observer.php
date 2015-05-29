@@ -9,8 +9,7 @@ class Meanbee_RunRate_Model_Observer {
     }
     public function adminSystemConfigChangedSectionCataloginventory(Varien_Event $observer) {
         $groups = Mage::app()->getRequest()->getPost('groups');
-        Mage::log(Mage::registry('meanbee_runrate_average_run'), null, 'ashsmith.log', true);
-        Mage::log($groups['meanbee_runrate'], null, 'ashsmith.log',true);
+
         if($groups['meanbee_runrate']['fields']['average_run_weeks'] !== Mage::registry('meanbee_runrate_average_run')) {
             Mage::getSingleton('index/indexer')
                 ->getProcessByCode('meanbee_runrate')
