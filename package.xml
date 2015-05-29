@@ -1,5 +1,5 @@
 <_>
-   <form_key>2B1om83FDCArZ9Bh</form_key>
+   <form_key>k2Wt7KkT3aOWeLsS</form_key>
    <name>Meanbee_RunRate</name>
    <channel>community</channel>
    <version_ids>
@@ -9,9 +9,9 @@
    <description>Establish when you are going to run out of stock and when you are going to need to order more.</description>
    <license>Commercial License</license>
    <license_uri/>
-   <version>1.0.3</version>
+   <version>1.0.4</version>
    <stability>stable</stability>
-   <notes>Added ACL support.</notes>
+   <notes>Fixed accuracy bugs</notes>
    <authors>
       <name>
          <name>Meanbee</name>
@@ -40,7 +40,7 @@
             <max/>
          </max>
          <files>
-            <files>       </files>
+            <files>        </files>
          </files>
       </package>
       <extension>
@@ -87,4 +87,8 @@
          <ignore/>
       </ignore>
    </contents>
+   <page>1</page>
+   <limit>200</limit>
+   <folder/>
+   <package/>
 </_>

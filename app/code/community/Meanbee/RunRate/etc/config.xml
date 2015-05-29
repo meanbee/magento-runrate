@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Meanbee_RunRate>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </Meanbee_RunRate>
     </modules>
     <global>
@@ -45,6 +45,26 @@
                 </meanbee_runrate>
             </indexer>
         </index>
+        <events>
+            <admin_system_config_changed_section_cataloginventory>
+                <observers>
+                    <meanbee_runrate>
+                        <type>singleton</type>
+                        <class>Meanbee_RunRate_Model_Observer</class>
+                        <method>adminSystemConfigChangedSectionCataloginventory</method>
+                    </meanbee_runrate>
+                </observers>
+            </admin_system_config_changed_section_cataloginventory>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <meanbee_runrate>
+                        <type>singleton</type>
+                        <class>Meanbee_RunRate_Model_Observer</class>
+                        <method>adminhtmlControllerActionPredispatchStart</method>
+                    </meanbee_runrate>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+        </events>
     </global>
     <default>
         <cataloginventory>
