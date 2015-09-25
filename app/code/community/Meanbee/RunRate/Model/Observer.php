@@ -17,4 +17,9 @@ class Meanbee_RunRate_Model_Observer {
         }
         Mage::unregister('meanbee_runrate_average_run');
     }
+    public function salesOrderShipmentSaveAfter(Varien_Event_Observer $observer) {
+        Mage::getSingleton('index/indexer')
+            ->getProcessByCode('meanbee_runrate')
+            ->reindexAll();
+    }
 }
