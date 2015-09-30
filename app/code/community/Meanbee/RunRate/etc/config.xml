@@ -96,7 +96,7 @@
         <jobs>
             <meanbee_runrate_reindex>
                 <schedule>
-                    <cron_expr>0 2 * * *</cron_expr>
+                    <cron_expr></cron_expr>
                 </schedule>
                 <run>
                     <model>meanbee_runrate/cron::reindex</model>
