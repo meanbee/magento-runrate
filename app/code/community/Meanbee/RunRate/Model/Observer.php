@@ -17,6 +17,10 @@ class Meanbee_RunRate_Model_Observer {
         }
         Mage::unregister('meanbee_runrate_average_run');
     }
+    /**
+     * Schedules a reindex for ordered products only.
+     * @param  Varien_Event_Observer $observer
+     */
     public function salesOrderPlaceAfter(Varien_Event_Observer $observer) {
         $order = $observer->getEvent()->getOrder();
         if ($order->getId()) {
@@ -33,21 +37,5 @@ class Meanbee_RunRate_Model_Observer {
                       ->setScheduledAt($timestamp)
                       ->save();
         }
-    }
-    public function reindex($productIds) {
-        if (empty($productIds)) {
-            Mage::getSingleton('index/indexer')
-                ->getProcessByCode('meanbee_runrate')
-                ->reindexAll();
-            return;
-        }
-        $indexEvent = Mage::getModel('index/event')
-                    ->setEntity(Mage_CatalogInventory_Model_Stock_Item::ENTITY)
-                    ->setType(Mage_Index_Model_Event::TYPE_MASS_ACTION)
-                    ->setProductIds($productIds);
-
-        Mage::getSingleton('index/indexer')
-            ->getProcessByCode('meanbee_runrate')
-            ->processEvent($indexEvent);
     }
 }
