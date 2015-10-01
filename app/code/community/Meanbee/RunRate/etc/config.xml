@@ -64,6 +64,15 @@
                     </meanbee_runrate>
                 </observers>
             </adminhtml_controller_action_predispatch_start>
+            <sales_order_place_after>
+                <observers>
+                    <meanbee_runrate>
+                        <type>singleton</type>
+                        <class>Meanbee_RunRate_Model_Observer</class>
+                        <method>salesOrderPlaceAfter</method>
+                    </meanbee_runrate>
+                </observers>
+            </sales_order_place_after>
         </events>
     </global>
     <default>
@@ -83,6 +92,18 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <meanbee_runrate_reindex>
+                <schedule>
+                    <cron_expr></cron_expr>
+                </schedule>
+                <run>
+                    <model>meanbee_runrate/cron::reindex</model>
+                </run>
+            </meanbee_runrate_reindex>
+        </jobs>
+    </crontab>
     <admin>
         <routers>
             <adminhtml>
