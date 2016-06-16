@@ -3,5 +3,6 @@
         <reference name="content">
             <block type="meanbee_runrate/adminhtml_runrate" name="meanbee.runrate.grid_container" />
         </reference>
+        <update handle="meanbee_barcodeannotator" />
     </adminhtml_meanbee_runrate_view>
 </layout>

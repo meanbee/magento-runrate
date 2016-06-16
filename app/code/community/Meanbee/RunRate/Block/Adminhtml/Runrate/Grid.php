@@ -50,7 +50,8 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
             'header'    => 'Sku',
             'align'     =>'left',
             'index'     => 'sku',
-            'width'     => '150px'
+            'width'     => '150px',
+            'frame_callback' => array($this, 'decorateSku')
         ));
 
         $this->addColumn('current_stock', array(
@@ -113,5 +114,25 @@ class Meanbee_RunRate_Block_Adminhtml_Runrate_Grid extends Mage_Adminhtml_Block_
         $label = Mage::helper('meanbee_runrate/status')->getStatusLabel($row->getStatus());
 
         return '<span class="grid-severity-' . $severity . '"><span>' . $label . '</span></span>';
+    }
+
+    /**
+     * Wrap SKU in tag to give Meanbee_BarcodeAnnotator a target for adding a
+     * barcode popup, if Meanbee_BarcodeAnnotator is installed.
+     * @param  string                                  $value    SKU
+     * @param  Meanbee_RunRate_Model_Runrate           $row      Grid row
+     * @param  Mage_Adminhtml_Block_Widget_Grid_Column $column   Grid column
+     * @param  boolean                                 $isExport
+     * @return string                                            Wrapped content
+     */
+    public function decorateSku($value, $row, $column, $isExport) {
+        if (Mage::helper('core')->isModuleEnabled('Meanbee_BarcodeAnnotator')) {
+            return sprintf(
+                '<div title class="barcode" data-barcode-symbology="%s">%s</div>',
+                Mage::helper('meanbee_barcodeannotator/config')->getProductSkuBarcodeSymbology(),
+                $value
+            );
+        }
+        return $value;
     }
 }
